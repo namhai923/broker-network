@@ -9,7 +9,7 @@ class Broker extends Contract {
       console.info('============= START : Initialize Query Topic ===========');
       const topicAsBytes = await ctx.stub.getState(topicNumber); // get the topic from chaincode state
       if (!topicAsBytes || topicAsBytes.length === 0) {
-          throw new Error(`${topicNumber} does not exist`);
+          return JSON.stringify(`${topicNumber} does not exist`);
       }
       console.log(topicAsBytes.toString());
       console.info('============= END : Initialize Query Topic ===========');
@@ -22,7 +22,7 @@ class Broker extends Contract {
 
       const topicAsBytes = await ctx.stub.getState(topicNumber); // get the topic from chaincode state
       if (topicAsBytes && topicAsBytes.length !== 0) {
-          throw new Error(`${topicNumber} already exist`);
+          return JSON.stringify(`${topicNumber} already exist`);
       }
 
       let subscribersArr = subscribers.split(',');
@@ -44,7 +44,7 @@ class Broker extends Contract {
 
     const topicAsBytes = await ctx.stub.getState(topicNumber); // get the topic from chaincode state
     if (!topicAsBytes || topicAsBytes.length === 0) {
-        throw new Error(`${topicNumber} does not exist`);
+        return JSON.stringify(`${topicNumber} does not exist`);
     }
     const topic = JSON.parse(topicAsBytes.toString());
     topic.message = newMessage;
