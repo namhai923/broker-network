@@ -12,7 +12,7 @@ class Broker extends Contract {
           return {Message: `${topicNumber} does not exist`};
       }
       console.info('============= END : Initialize Query Topic ===========');
-      return topicAsBytes;
+      return topicAsBytes.toString();
   }
 
   // Create a new topic with the provided information and put it on the ledger.
