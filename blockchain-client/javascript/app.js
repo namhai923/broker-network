@@ -97,7 +97,7 @@ app.post('/createTopic', async function (req, res) {
 
     let {topicNumber, topicName, publisher, subscribers, message} = req.body;
 
-    let result = contract.submitTransaction('createTopic', topicNumber, topicName, publisher, subscribers, message);
+    let result = await contract.submitTransaction('createTopic', topicNumber, topicName, publisher, subscribers, message);
     res.status(200).json(JSON.parse(result.toString()));
 
   }
