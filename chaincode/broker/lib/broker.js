@@ -36,6 +36,7 @@ class Broker extends Contract {
       
       await ctx.stub.putState(topicNumber, Buffer.from(JSON.stringify(topic)));
       console.info('============= END : Create Topic ===========');
+      return JSON.stringify(`${topicNumber} is created`);
   }
 
   // Publish to a topic by updating the message and notifying all subscribers.
@@ -52,6 +53,7 @@ class Broker extends Contract {
     await ctx.stub.putState(topicNumber, Buffer.from(JSON.stringify(topic))); // update topic message on ledger
     
     console.info('============= END : Publish to a Topic ===========');
+    return JSON.stringify(`${topicNumber} is updated`);
   }
 
   // Query all topics from the ledger.
